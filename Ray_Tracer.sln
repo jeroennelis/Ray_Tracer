@@ -1,0 +1,31 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sandbox", "Sandbox\Sandbox.vcxproj", "{6E47E47A-AEDF-4D71-9434-4EB80ADB3C19}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ray_Tracer", "Ray_Tracer\Ray_Tracer.vcxproj", "{F87889D9-F4D6-4FF3-ADCC-F1EC9BAA2AB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F87889D9-F4D6-4FF3-ADCC-F1EC9BAA2AB2}.Debug|x64.ActiveCfg = Debug|x64
+		{F87889D9-F4D6-4FF3-ADCC-F1EC9BAA2AB2}.Debug|x64.Build.0 = Debug|x64
+		{F87889D9-F4D6-4FF3-ADCC-F1EC9BAA2AB2}.Release|x64.ActiveCfg = Release|x64
+		{F87889D9-F4D6-4FF3-ADCC-F1EC9BAA2AB2}.Release|x64.Build.0 = Release|x64
+		{6E47E47A-AEDF-4D71-9434-4EB80ADB3C19}.Debug|x64.ActiveCfg = Debug|x64
+		{6E47E47A-AEDF-4D71-9434-4EB80ADB3C19}.Debug|x64.Build.0 = Debug|x64
+		{6E47E47A-AEDF-4D71-9434-4EB80ADB3C19}.Release|x64.ActiveCfg = Release|x64
+		{6E47E47A-AEDF-4D71-9434-4EB80ADB3C19}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {015ED957-8653-404D-A6A3-D856423C38B3}
+	EndGlobalSection
+EndGlobal
