@@ -10,7 +10,7 @@ namespace Ray_Tracer {
 		Application();
 		virtual ~Application();
 
-		void Run();
+		virtual void Run();
 	};
 
 	// To be defined in CLIENT

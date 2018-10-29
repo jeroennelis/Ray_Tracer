@@ -12,6 +12,18 @@ public:
 	{
 
 	}
+
+	void Run()
+	{
+		World w;
+		w.build();
+		w.render_scene();
+		while (true)
+		{
+
+		}
+	}
+
 };
 
 Ray_Tracer::Application* Ray_Tracer::CreateApplication()
