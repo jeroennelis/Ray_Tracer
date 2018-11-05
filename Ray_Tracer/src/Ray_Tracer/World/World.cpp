@@ -22,11 +22,14 @@ void World::build(void)
 {
 	printf("building the world\n");
 
+	int num_samples = 256;
+
 	vp.set_hres(300);
 	vp.set_vres(300);
+	vp.set_sampler(new MultiJittered(num_samples));
 	vp.set_pixel_size(1);
 	background_color = black;
-	tracer = new MultipleObjects(this);
+	tracer_ptr = new MultipleObjects(this);
 	
 	Sphere* sphere_ptr = new Sphere;
 	sphere_ptr->set_center(0, -25, 0);
@@ -64,30 +67,50 @@ ShadeRec World::hit_bare_bones_objects(const Ray & ray)
 	return sr;
 }
 
-void World::render_scene(void) const
+void World::render_scene(std::string& filename) const
 {
+	if (tracer_ptr == NULL)
+	{
+		// TODO exit & logging
+		std::cout << "tracer was not initialised" << std::endl;
+		return;
+	}
 	printf("rendering the scene\n");
 	RGBColor	pixel_color;
 	Ray			ray;
 	double		zw = 100.0;
-	double		x, y;
 
 	ray.d = Vector3D(0, 0, -1);
 
+	int n = (int)sqrt((float)vp.num_samples);
+
+	Point2D sp;			//sample poit in [0, 1] [0, 1]
+	Point2D pp;			//sample point on a pixel
+
 	for (int r = 0; r < vp.vres; r++)
 	{
-		for (int c = 0; c < vp.hres; c++)
+		for (int c = 0; c <= vp.hres; c++)
 		{
-			x = vp.s * (c - 0.5 *(vp.hres - 1.0));
-			y = vp.s * (r - 0.5 *(vp.vres - 1.0));
-			ray.o = Point3D(x, y, zw);
-			pixel_color = tracer->trace_ray(ray);
+			pixel_color = black;
+
+			for (int p = 0; p < n; p++)
+			{
+				for (int q = 0; q < n; q++)
+				{
+					sp = vp.sampler_ptr->sample_unit_square();
+					pp.x = vp.s * (c - 0.5 * vp.hres + (q + 0.5) / n);
+					pp.y = vp.s * (r - 0.5 * vp.vres + (p + 0.5) / n);
+					ray.o = Point3D(pp.x, pp.y, zw);
+					pixel_color += tracer_ptr->trace_ray(ray);
+				}
+			}
+			pixel_color /= vp.num_samples;
 			set_pixel(r, c, pixel_color);
 			image->setPixel(r, c, pixel_color);
 		}
 	}
-	image->saveImage("test.png");
-	ShellExecute(NULL, "open", "test.png", NULL, NULL, SW_NORMAL);
+	image->saveImage(filename.append(".png"));
+	ShellExecute(NULL, "open", filename.c_str(), NULL, NULL, SW_NORMAL);
 }
 
 void World::set_pixel(const int row, const int column, const RGBColor & pixelColor) const

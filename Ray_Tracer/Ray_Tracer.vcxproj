@@ -11,6 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Ray_Tracer\Samplers\MultiJittered.h" />
+    <ClInclude Include="src\Ray_Tracer\Samplers\NRooks.h" />
+    <ClInclude Include="src\Ray_Tracer\Samplers\Jittered.h" />
+    <ClInclude Include="src\Ray_Tracer\Samplers\Sampler.h" />
+    <ClInclude Include="src\Ray_Tracer\Utilities\Point2D.h" />
     <ClInclude Include="src\Ray_Tracer\Tracers\MultipleObjects.h" />
     <ClInclude Include="src\Ray_Tracer\Tracers\SingleSphere.h" />
     <ClInclude Include="src\Ray_Tracer\EntryPoint.h" />
@@ -36,6 +41,11 @@
     <ClInclude Include="src\Ray_Tracer\World\World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Ray_Tracer\Samplers\MultiJittered.cpp" />
+    <ClCompile Include="src\Ray_Tracer\Samplers\NRooks.cpp" />
+    <ClCompile Include="src\Ray_Tracer\Samplers\Jittered.cpp" />
+    <ClCompile Include="src\Ray_Tracer\Samplers\Sampler.cpp" />
+    <ClCompile Include="src\Ray_Tracer\Utilities\Point2D.cpp" />
     <ClCompile Include="src\Ray_Tracer\Tracers\MultipleObjects.cpp" />
     <ClCompile Include="src\Ray_Tracer\Tracers\SingleSphere.cpp" />
     <ClCompile Include="src\Ray_Tracer\Application.cpp" />
@@ -69,7 +79,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -88,6 +98,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
   </PropertyGroup>

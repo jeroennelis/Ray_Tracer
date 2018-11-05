@@ -1,4 +1,6 @@
 #pragma once
+#include "../Samplers/Sampler.h"
+
 //-------------------------------------------------------------------------------------- class ViewPlane
 
 class ViewPlane {
@@ -10,8 +12,10 @@ class ViewPlane {
 		float			gamma;						// gamma correction factor
 		float			inv_gamma;					// the inverse of the gamma correction factor
 		bool			show_out_of_gamut;			// display red if RGBColor out of gamut
-		
-									
+
+		int				num_samples;				// # samples per pixel
+
+		Sampler*		sampler_ptr;				// holds pointer to the sampler
 	
 	public:
 	
@@ -22,6 +26,10 @@ class ViewPlane {
 		ViewPlane& operator= (const ViewPlane& rhs);		// assignment operator
 		
 		~ViewPlane();   							// destructor
+
+		void set_sampler(Sampler* sampler);
+
+		void set_samples(const int n);
 						
 		void 													
 		set_hres(const int h_res);
@@ -37,6 +45,8 @@ class ViewPlane {
 		
 		void
 		set_gamut_display(const bool show);				
+
+		
 };
 
 
