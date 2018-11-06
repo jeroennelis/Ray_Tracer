@@ -99,6 +99,9 @@
     <ClInclude Include="src\Ray_Tracer\Samplers\Sampler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ray_Tracer\Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ray_Tracer\Application.cpp">
@@ -168,6 +171,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Ray_Tracer\Samplers\Sampler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ray_Tracer\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

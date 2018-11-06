@@ -36,6 +36,7 @@
     <ClInclude Include="src\Ray_Tracer\Utilities\ShadeRec.h" />
     <ClInclude Include="src\Ray_Tracer\Utilities\Vector3D.h" />
     <ClInclude Include="src\Ray_Tracer\Vendor\lodepng.h" />
+    <ClInclude Include="src\Ray_Tracer\Window.h" />
     <ClInclude Include="src\Ray_Tracer\World\ViewPlane.h" />
     <ClInclude Include="src\RT.h" />
     <ClInclude Include="src\Ray_Tracer\World\World.h" />
@@ -62,6 +63,7 @@
     <ClCompile Include="src\Ray_Tracer\Utilities\ShadeRec.cpp" />
     <ClCompile Include="src\Ray_Tracer\Utilities\Vector3D.cpp" />
     <ClCompile Include="src\Ray_Tracer\Vendor\lodepng.cpp" />
+    <ClCompile Include="src\Ray_Tracer\Window.cpp" />
     <ClCompile Include="src\Ray_Tracer\World\ViewPlane.cpp" />
     <ClCompile Include="src\Ray_Tracer\World\World.cpp" />
   </ItemGroup>
@@ -111,8 +113,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>RT_PLATFORM_WINDOWS;RT_BUILD_DLL</PreprocessorDefinitions>
+      <PreprocessorDefinitions>RT_PLATFORM_WINDOWS;RT_BUILD_DLL;GLEW_STATIC</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Depencencies\GLEW\include;$(SolutionDir)Depencencies\GLFW\include</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)Depencencies\GLEW\lib\Release\x64; $(SolutionDir)Depencencies\GLFW\lib-vc2015</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -122,11 +129,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>RT_PLATFORM_WINDOWS;RT_BUILD_DLL</PreprocessorDefinitions>
+      <PreprocessorDefinitions>RT_PLATFORM_WINDOWS;RT_BUILD_DLL;GLEW_STATIC</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Depencencies\GLEW\include;$(SolutionDir)Depencencies\GLFW\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)Depencencies\GLEW\lib\Release\x64; $(SolutionDir)Depencencies\GLFW\lib-vc2015</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -107,6 +107,7 @@ void World::render_scene(std::string& filename) const
 			pixel_color /= vp.num_samples;
 			set_pixel(r, c, pixel_color);
 			image->setPixel(r, c, pixel_color);
+
 		}
 	}
 	image->saveImage(filename.append(".png"));
