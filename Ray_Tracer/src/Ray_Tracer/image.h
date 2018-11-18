@@ -13,6 +13,7 @@ class Image
 protected:
 	int width, height;
 	RGBColor* data;
+	unsigned char* imgData;
 
 public:
 	Image(int width, int height);

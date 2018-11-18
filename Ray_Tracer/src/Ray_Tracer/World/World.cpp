@@ -89,7 +89,7 @@ void World::render_scene(std::string& filename) const
 
 	for (int r = 0; r < vp.vres; r++)
 	{
-		for (int c = 0; c <= vp.hres; c++)
+		for (int c = 0; c < vp.hres; c++)
 		{
 			pixel_color = black;
 
@@ -98,8 +98,8 @@ void World::render_scene(std::string& filename) const
 				for (int q = 0; q < n; q++)
 				{
 					sp = vp.sampler_ptr->sample_unit_square();
-					pp.x = vp.s * (c - 0.5 * vp.hres + (q + 0.5) / n);
-					pp.y = vp.s * (r - 0.5 * vp.vres + (p + 0.5) / n);
+					pp.x = vp.s * (c - 0.5 * vp.hres + sp.x);
+					pp.y = vp.s * (r - 0.5 * vp.vres + sp.y);
 					ray.o = Point3D(pp.x, pp.y, zw);
 					pixel_color += tracer_ptr->trace_ray(ray);
 				}
@@ -110,8 +110,10 @@ void World::render_scene(std::string& filename) const
 
 		}
 	}
+
+	int test = 0;
 	image->saveImage(filename.append(".png"));
-	ShellExecute(NULL, "open", filename.c_str(), NULL, NULL, SW_NORMAL);
+	/*ShellExecute(NULL, "open", filename.c_str(), NULL, NULL, SW_NORMAL);*/
 }
 
 void World::set_pixel(const int row, const int column, const RGBColor & pixelColor) const

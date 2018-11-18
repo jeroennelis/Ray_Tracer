@@ -8,11 +8,13 @@ Image::Image(int width, int height)
 	: width(width), height(height)
 {
 	data = new RGBColor[width * height];
+	imgData = new unsigned char[4 * width * height];
 }
 
 Image::~Image()
 {
 	delete[] data;
+	delete[] imgData;
 }
 
 int Image::getWidth() const
@@ -33,31 +35,39 @@ RGBColor* Image::getPixel(int x, int y)
 void Image::setPixel(int x, int y, RGBColor & color)
 {
 	data[y + x * width] = color;
+
+	imgData[4 * (x + y * width) + 0] = 255;
+	imgData[4 * (x + y * width) + 1] =
+		(unsigned char)(color.b * 255.0f);
+	imgData[4 * (x + y * width) + 2] =
+		(unsigned char)(color.g * 255.0f);
+	imgData[4 * (x + y * width) + 3] =
+		(unsigned char)(color.r * 255.0f);
 }
 
 void Image::saveImage(std::string filename) const
 {
 
-	unsigned char* imgData = new unsigned char[4 * width * height];
+	//unsigned char* imgData = new unsigned char[4 * width * height];
 
-	int newY = height - 1;
-	for (int y = 0; y < height; y++, newY--)
-	{
-		for (int x = 0; x < width; x++)
-		{
-			RGBColor curColor = data[x + y * width];
+	//int newY = height - 1;
+	//for (int y = 0; y < height; y++, newY--)
+	//{
+	//	for (int x = 0; x < width; x++)
+	//	{
+	//		RGBColor curColor = data[x + y * width];
 
-			imgData[4 * (x + y * width) + 0] = 255;
-			imgData[4 * (x + y * width) + 1] =
-			(unsigned char)(curColor.b * 255.0f);
-			imgData[4 * (x + y * width) + 2] =
-			(unsigned char)(curColor.g * 255.0f);
-			imgData[4 * (x + y * width) + 3] =
-			(unsigned char)(curColor.r * 255.0f);
-		}
-		glDrawPixels(300, y, GL_ABGR_EXT, GL_UNSIGNED_BYTE, imgData);
-		Window::Update();
-	}
+	//		imgData[4 * (x + y * width) + 0] = 255;
+	//		imgData[4 * (x + y * width) + 1] =
+	//		(unsigned char)(curColor.b * 255.0f);
+	//		imgData[4 * (x + y * width) + 2] =
+	//		(unsigned char)(curColor.g * 255.0f);
+	//		imgData[4 * (x + y * width) + 3] =
+	//		(unsigned char)(curColor.r * 255.0f);
+	//	}
+	//	/*glDrawPixels(300, y, GL_ABGR_EXT, GL_UNSIGNED_BYTE, imgData);
+	//	Window::Update();*/
+	//}
 
 	
 

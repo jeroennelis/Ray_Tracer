@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "../Utilities/Point2D.h"
 #include "../Utilities/Maths.h"
 

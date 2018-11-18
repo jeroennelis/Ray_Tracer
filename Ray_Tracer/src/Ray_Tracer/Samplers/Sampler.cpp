@@ -9,6 +9,7 @@ Sampler::Sampler()
 	jump(0)
 {
 	samples.reserve(num_samples * num_sets);
+	setup_shuffled_indices();
 }
 
 Sampler::Sampler(const int numSamples)
@@ -18,6 +19,7 @@ Sampler::Sampler(const int numSamples)
 	jump(0)
 {
 	samples.reserve(num_samples * num_sets);
+	setup_shuffled_indices();
 }
 
 Sampler::Sampler(const int numSamples, const int numSets)
@@ -27,6 +29,7 @@ Sampler::Sampler(const int numSamples, const int numSets)
 	jump(0)
 {
 	samples.reserve(num_samples * num_sets);
+	setup_shuffled_indices();
 }
 
 Sampler::Sampler(const Sampler & s)
@@ -44,9 +47,25 @@ Sampler::~Sampler()
 {
 }
 
+void Sampler::setup_shuffled_indices(void)
+{
+	shuffled_indices.reserve(num_samples * num_sets);
+	std::vector<int> indices;
+
+	for (int j = 0; j < num_samples; j++)
+		indices.push_back(j);
+
+	for (int p = 0; p < num_sets; p++)
+	{
+		std::random_shuffle(indices.begin(), indices.end());
+		for (int j = 0; j < num_samples; j++)
+			shuffled_indices.push_back(indices[j]);
+	}
+}
+
 Point2D Sampler::sample_unit_square(void)
 {
 	if (count % num_samples == 0)
 		jump = (rand_int() % num_sets) * num_samples;
-	return (samples[count++ % (num_samples * num_sets)]);
+	return (samples[jump + shuffled_indices[jump + count++ % num_samples]]);
 }
